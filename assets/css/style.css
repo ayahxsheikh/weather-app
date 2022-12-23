@@ -1,0 +1,15 @@
+/* RESETS */
+body {
+    background-color: #e6e2e2;
+}
+
+/* CUSTOM STYLES */
+
+.input-group-append {
+    background-color: #3f9ed0;
+    
+}
+
+button {
+    padding: 0px, 10px;
+}
