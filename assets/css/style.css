@@ -1,15 +1,71 @@
 /* RESETS */
-body {
-    background-color: #e6e2e2;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box; 
 }
+
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* REUSEABLE */
+.row, .column {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
 
 /* CUSTOM STYLES */
 
-.input-group-append {
-    background-color: #3f9ed0;
-    
+.weather-header {
+    background-color: #192070;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
 }
 
-button {
-    padding: 0px, 10px;
+main.main {
+    /* display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr; */
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.search-form {
+    margin-top: 2rem;
+    /* grid-column: 1 / 2; */
+}
+
+.div-form {
+    display: block;
+}
+
+input.city-search{
+    padding: 5px;
+    margin-top: 10px;
+}
+
+
+.s-btn {
+    font-size: 12px;
+    background-color: #5098E6;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    padding: 7px;
+    width: 150px;
 }
