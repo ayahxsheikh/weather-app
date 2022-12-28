@@ -44,13 +44,14 @@ main.main {
     margin-right: 15px;
 }
 
+h4 {
+    text-align: center;
+    margin-top: 1rem;
+}
+
 .search-form {
     margin-top: 2rem;
     /* grid-column: 1 / 2; */
-}
-
-.div-form {
-    display: block;
 }
 
 input.city-search{
@@ -68,4 +69,8 @@ input.city-search{
     margin-top: 10px;
     padding: 7px;
     width: 150px;
+}
+
+.search-history {
+    margin-top: 1rem;
 }
