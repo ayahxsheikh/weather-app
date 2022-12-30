@@ -19,7 +19,7 @@ body {
     height: 100%;
 }
 
-/* REUSEABLE */
+/* GLOBAL */
 
 .row, .column {
     display: flex;
@@ -59,7 +59,7 @@ main.main {
     background-image: url(../images/white-clouds.png);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 20rem;
+    height: 25rem;
 
 }
 
@@ -69,7 +69,8 @@ h4.message {
 
 .top {
     display: grid;
-    grid-template-columns: 1.2fr 3fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
 
 }
 
@@ -80,18 +81,7 @@ h4.message {
 input.city-search {
     padding: 5px;
     margin-top: 10px;
-}
-
-
-.s-btn {
-    font-size: 12px;
-    background-color: #5098E6;
-    border-radius: 3px;
-    border: none;
-    color: white;
-    margin-top: 10px;
-    padding: 7px;
-    width: 150px;
+    width: 180px;
 }
 
 .search-history {
@@ -100,12 +90,20 @@ input.city-search {
 
 }
 
-.today {
-    margin: var(--margin-top)
+.today  > * {
+    margin: var(--margin-top);
+    margin-bottom: 10px;
 }
 
 button {
     cursor: pointer;
+    color: white;
+    margin-top: 5px;
+    background-color: var(--violet);
+    border-radius: 3px;
+    border: .5px solid;
+    padding: 7px;
+    width: 180px;
 }
 
 .display-weather {
@@ -115,7 +113,7 @@ button {
 }
 
 section .forecast-card > *:not(:last-child){
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .forecast-card {
@@ -141,17 +139,31 @@ footer {
 
 
 @media (max-width: 800px) {
+    .hero {
+        height: 27rem;
+    }
+
     .top {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
     }
 
+    button {
+        flex-direction: row;
+    }
+
     .today {
-        margin-left: 0px;
+        margin: 0px;
     }
 
     .search-form {
         align-items:center;
     }
+
+    .display-weather {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+
 
 }
