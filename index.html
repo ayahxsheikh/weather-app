@@ -18,37 +18,37 @@
 
   <!-- max-width for ultra wide resolutions -->
   <main class ="main" >
-    <section class="hero">
+    <section class="hero row justify-center">
       
       <div class="top">
         <aside class="search-form column align-center">
-          <h2 class="aside-h2"> Search for a City:</h2>
-          <div id="input-area" class="input-form">
-            <input class="city-search row" type="text" id="search-input" placeholder="London"/>
-          </div>
-          <div class="search-history" id="history">
+          <h2 class="aside-h2"> Search for a City</h2>
+          <input class="city-search row" type="text" id="search-input" placeholder="London"/>
+          <div class="search-history row" id="history">
             <button>London</button>
             <button>London</button>
             <button>London</button>
             <button>London</button>
+            <!-- <button>London</button>
+            <button>London</button> -->
           </div>
         </aside>
         
-        <h4 class="message row justify-center align-center"> Enter a city name to see its five-day weather forecast</h4>
+        <h4 class="message row justify-center"> Enter a city name to see its five-day weather forecast</h4>
         <!-- DISPLAY TODAY -->
-        <div id="weath-today" class="today">
+        <div id="weath-today" class="today column">
           <h2 class="city-name">London</h2>
           <h3 class="date">28/12/2022</h3>
           <h5 class="temp">Temp:</h5>
           <h5 class="wind">Wind:</h5>
-          <h5 class="humidity">Humidity</h5>
+          <h5 class="humidity">Humidity:</h5>
         </div>
 
       </div>
     </section>
 
   <!-- DISPLAY FORECAST -->
-    <section class="display-weather">
+    <section class="display-weather row">
 
       <div id="forecast" class="forecast-card">
         <h4 class="date">28/12/2022</h4>

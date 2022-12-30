@@ -1,8 +1,9 @@
 :root {
     --primary: #265B8B;
+    --secondary: #70acd1f1;
     --pewter: #ECECEB;
-    --turqouise: #84C7F2;
-    --violet: #7391C8;
+    --turqouise: #84c7f2;
+    --white: #eaeced;
     --margin-top: 1rem;
 }
 
@@ -42,7 +43,7 @@ body {
 
 .header {
     background-color: var(--primary);
-    color: #fff;
+    color: var(--white);
     padding: 20px;
     text-align: center;
 }
@@ -59,7 +60,7 @@ main.main {
     background-image: url(../images/white-clouds.png);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 25rem;
+    min-height: 30rem;
 
 }
 
@@ -71,63 +72,80 @@ h4.message {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-
 }
 
 .search-form {
-    margin-top: 1rem;
+    margin-top: 5rem;
+    gap: 15px;
 }
 
 input.city-search {
-    padding: 5px;
+    padding: 7px;
     margin-top: 10px;
-    width: 180px;
+    width: 250px;
+    border-radius: 3px;
+    border: 1px solid var(--secondary);
 }
 
 .search-history {
-    margin-top: 1rem;
+    margin-top: .5rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 
 }
 
-.today  > * {
-    margin: var(--margin-top);
-    margin-bottom: 10px;
+main .today  > * {
+    margin-bottom: 15px;
 }
+
+.today {
+    margin: 15px;
+    background-color:#b8cad59a;
+    border-radius: 3px;
+    border: .5px solid var(--secondary);
+    width: 30rem;
+    padding: 20px;
+    padding-left: 30px;
+}
+
+
+/* .city-name {
+    margin-top: .7rem;
+} */
 
 button {
     cursor: pointer;
     color: white;
-    margin-top: 5px;
-    background-color: var(--violet);
+    background-color: var(--secondary);
     border-radius: 3px;
     border: .5px solid;
+    margin-top: 5px;
     padding: 7px;
     width: 180px;
+    flex-wrap: wrap;
+
 }
 
 .display-weather {
     display:grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
 }
 
 section .forecast-card > *:not(:last-child){
-    margin-bottom: 20px;
+     margin-bottom: 20px;
 }
 
 .forecast-card {
-    margin-left:0px;
-    margin-top: var(--margin-top);
-    border: 2px solid var(--primary);
+    margin: 15px;
+    color: var(--white);
+    border: 2px solid var(--turqouise);
     border-radius: 5px;
     padding: 20px 40px 20px 40px;
+    background: linear-gradient(rgba(129, 177, 207, 0.94),rgba(73, 131, 167, 0.928));
     
 }
-
-
-
-
 
 footer {
     display: flex;
@@ -138,23 +156,30 @@ footer {
 }
 
 
+
+
+
+
+
+
+
+
+
 @media (max-width: 800px) {
-    .hero {
-        height: 27rem;
-    }
+    /* .hero {
+        min-height: 30rem;
+    } */
 
     .top {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
     }
 
-    button {
-        flex-direction: row;
-    }
-
-    .today {
-        margin: 0px;
-    }
+    /* .search-history {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    } */
 
     .search-form {
         align-items:center;
