@@ -1,5 +1,8 @@
 :root {
-    --primary: #192070;
+    --primary: #265B8B;
+    --pewter: #ECECEB;
+    --turqouise: #84C7F2;
+    --violet: #7391C8;
     --margin-top: 1rem;
 }
 
@@ -45,15 +48,23 @@ body {
 }
 
 main.main {
-    margin-left: 15px;
-    margin-right: 15px;
-    height: 130vh;
+    /* margin-left: 15px;
+    margin-right: 15px; */
+    background-color: #ECECEB;
+    height: 180vh;
     /* height 100vh on main pushes footer to bottom of page */
 }
 
+.hero {
+    background-image: url(../images/white-clouds.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 20rem;
+
+}
+
 h4.message {
-    text-align: center;
-    margin: var(--margin-top)
+    padding-top: 1rem;
 }
 
 .top {
@@ -93,6 +104,9 @@ input.city-search {
     margin: var(--margin-top)
 }
 
+button {
+    cursor: pointer;
+}
 
 .display-weather {
     display:grid;

@@ -18,30 +18,33 @@
 
   <!-- max-width for ultra wide resolutions -->
   <main class ="main" >
-    <h4 class="message"> Enter a city name to see a five-day weather forecast</h4>
-
-    <section class="top">
-      <aside class="search-form column">
-        <h2 class="aside-h2"> Search for a City:</h2>
-        <div id="input-area" class="input-form">
-          <input class="city-search row" type="text" id="search-input" placeholder="London"/>
-          <button type="submit" id="search-button" class="s-btn"> Search </button>
+    <section class="hero">
+      <h4 class="message row justify-center align-center"> Enter a city name to see its five-day weather forecast</h4>
+      
+      <div class="top">
+        <aside class="search-form column">
+          <h2 class="aside-h2"> Search for a City:</h2>
+          <div id="input-area" class="input-form">
+            <input class="city-search row" type="text" id="search-input" placeholder="London"/>
+            <button type="submit" id="search-button" class="s-btn"> Search </button>
+          </div>
+          <div class="search-history" id="history">
+            <button>London</button>
+            <button>London</button>
+            <button>London</button>
+            <button>London</button>
+          </div>
+        </aside>
+        
+        <!-- DISPLAY TODAY -->
+        <div id="weath-today" class="today">
+          <h2 class="city-name">London</h2>
+          <h3 class="date">28/12/2022</h3>
+          <h5 class="temp">Temp:</h5>
+          <h5 class="wind">Wind:</h5>
+          <h5 class="humidity">Humidity</h5>
         </div>
-        <div class="search-history" id="history">
-          <button>London</button>
-          <button>London</button>
-          <button>London</button>
-          <button>London</button>
-        </div>
-      </aside>
 
-  <!-- DISPLAY TODAY -->
-      <div id="weath-today" class="today">
-        <h2 class="city-name">London</h2>
-        <h3 class="date">28/12/2022</h3>
-        <h5 class="temp">Temp:</h5>
-        <h5 class="wind">Wind:</h5>
-        <h5 class="humidity">Humidity</h5>
       </div>
     </section>
 
