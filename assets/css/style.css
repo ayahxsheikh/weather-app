@@ -49,14 +49,6 @@ body {
     text-align: center;
 }
 
-main.main {
-    /* margin-left: 15px;
-    margin-right: 15px; */
-    background-color: #ECECEB;
-    height: 180vh;
-    /* height 100vh on main pushes footer to bottom of page */
-}
-
 .hero {
     background-image: url(../images/white-clouds.png);
     background-size: cover;
@@ -136,6 +128,10 @@ button {
     flex-wrap: wrap;
 
 }
+.forecast-sec {
+    background-color: var(--pewter);
+    min-height: 15rem;
+}
 
 .display-weather {
     display:grid;
@@ -157,8 +153,6 @@ section .forecast-card > *:not(:last-child){
 }
 
 footer {
-    display: flex;
-    /* justify-content: end; */
     background-color: var(--primary);
     color: #fff;
     padding: 20px;
@@ -175,20 +169,11 @@ footer {
 
 
 @media (max-width: 800px) {
-    /* .hero {
-        min-height: 30rem;
-    } */
 
     .top {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
     }
-
-    /* .search-history {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    } */
 
     .search-form {
         align-items:center;
