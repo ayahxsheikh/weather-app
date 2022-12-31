@@ -7,9 +7,10 @@
 
 var apiKey = '753dbaeb28d5f9e47d1357c0fbe984e8';
 var baseURL = 'https://api.openweathermap.org/data/2.5/';
-var weatherURL = baseURL + `weather?appid=${apiKey}&units=metric&`;
+var currentURL = baseURL + `weather?appid=${apiKey}&units=metric&`;
 var forecastURL = baseURL + `forecast?appid=${apiKey}&units=metric&`;
 
+var cityInput;
 var mainWrapper = $('.main')
 var topSec = $('.top')
 var searchInput = $('#search-input')
@@ -55,10 +56,16 @@ function displayWeather(){
 
 function getCityData (event){
     var keyCode = event.keyCode;
-    var searchText = searchInput.val();
+    cityInput = searchInput.val();
     
-    if (keyCode === 13 && searchText){
+    if (keyCode === 13 && cityInput){
         // console.log(searchText)
+        $.get(currentURL + `q=${cityInput}`)
+            .then(function(currentData){
+                console.log(currentData)
+            }
+            )
+
         displayWeather()
     }
 }
@@ -74,19 +81,19 @@ init();
 
 
 
-var forecast = [
-    {
-    city: 'london',
-    temp: '12C',
-    wind: '2mph',
-    humidity: '1ap'
-    },
+// var forecast = [
+//     {
+//     city: 'london',
+//     temp: '12C',
+//     wind: '2mph',
+//     humidity: '1ap'
+//     },
 
-    {
-    city: 'manchester',
-    temp: '9C',
-    wind: '6mph',
-    humidity: '4ap'
-    } 
-    ];
+//     {
+//     city: 'manchester',
+//     temp: '9C',
+//     wind: '6mph',
+//     humidity: '4ap'
+//     } 
+//     ];
 
