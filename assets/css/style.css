@@ -18,6 +18,7 @@
 body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
+    width: 100%;
 }
 
 /* GLOBAL */
@@ -61,11 +62,11 @@ main.main {
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 30rem;
-
 }
 
 h4.message {
     padding-top: 1rem;
+    margin-bottom: .7rem;
 }
 
 .top {
@@ -75,7 +76,7 @@ h4.message {
 }
 
 .search-form {
-    margin-top: 5rem;
+    margin-top: 3.5rem;
     gap: 15px;
 }
 
@@ -96,24 +97,32 @@ input.city-search {
 
 }
 
-main .today  > * {
-    margin-bottom: 15px;
-}
-
 .today {
     margin: 15px;
-    background-color:#b8cad59a;
+    background-color:#96afbb64;
     border-radius: 3px;
     border: .5px solid var(--secondary);
-    width: 30rem;
-    padding: 20px;
-    padding-left: 30px;
+    width: 35rem;
+    padding: 20px 20px 20px 30px;
 }
 
 
-/* .city-name {
-    margin-top: .7rem;
-} */
+.city-name {
+    display:inline-block;
+    margin-right: 10px;
+}
+
+.today-date {
+    display:inline-block;
+}
+
+main .today-info > * {
+    margin-top: 10px;
+}
+
+.icon {
+    text-align: center;
+}
 
 button {
     cursor: pointer;

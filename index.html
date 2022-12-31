@@ -18,13 +18,13 @@
 
   <!-- max-width for ultra wide resolutions -->
   <main class ="main" >
-    <section class="hero row justify-center">
+    <section class="hero">
       
       <div class="top">
         <aside class="search-form column align-center">
           <h2 class="aside-h2"> Search for a City</h2>
           <input class="city-search row" type="text" id="search-input" placeholder="London"/>
-          <div class="search-history row" id="history">
+          <div class="search-history row justify-center" id="history">
             <button>London</button>
             <button>London</button>
             <button>London</button>
@@ -36,13 +36,21 @@
         
         <h4 class="message row justify-center"> Enter a city name to see its five-day weather forecast</h4>
         <!-- DISPLAY TODAY -->
-        <div id="weath-today" class="today column">
-          <h2 class="city-name">London</h2>
-          <h3 class="date">28/12/2022</h3>
-          <h5 class="temp">Temp:</h5>
-          <h5 class="wind">Wind:</h5>
-          <h5 class="humidity">Humidity:</h5>
-        </div>
+        <section class="row justify-center">
+          <section class="today row">
+            <div>
+              <h2 class="city-name row justify-center">London</h2>
+              <h3 class="today-date">28/12/2022</h3>
+            <div>
+              <div class="today-info column ">
+                <h5 class="icon">Icon</h5>
+                <h5 class="temp">Temp:</h5>
+                <h5 class="wind">Wind:</h5>
+                <h5 class="humidity">Humidity:</h5>
+              </div>
+            </div>
+          </section>
+        </section>
 
       </div>
     </section>
