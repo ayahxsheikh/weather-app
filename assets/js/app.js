@@ -28,12 +28,38 @@ var asideEl = $('.search-form')
 //create weather-today block and append to topSec
 
 
+function displayWeather(){
+    for (var foreObj of forecast){
+        topSec.append( `<section class=" display-today row justify-center">
+        <section class="today row">
+          <div>
+            <h2 class="city-name row justify-center">${foreObj.city}</h2>
+            <h3 class="today-date">28/12/2022</h3>
+          <div>
+            <div class="today-info column ">
+              <h5 class="icon">Icon</h5>
+              <h5 class="temp">Temp: ${foreObj.temp}</h5>
+              <h5 class="wind">Wind: ${foreObj.wind}</h5>
+              <h5 class="humidity">Humidity: ${foreObj.humidity}</h5>
+            </div>
+          </div>
+        </section>
+      </section>`
+        );
+    }
+}
+
+// function displayHistory
+
+
+
 function getCityData (event){
     var keyCode = event.keyCode;
     var searchText = searchInput.val();
     
     if (keyCode === 13 && searchText){
-        console.log(searchText)
+        // console.log(searchText)
+        displayWeather()
     }
 }
 
@@ -48,5 +74,19 @@ init();
 
 
 
+var forecast = [
+    {
+    city: 'london',
+    temp: '12C',
+    wind: '2mph',
+    humidity: '1ap'
+    },
 
+    {
+    city: 'manchester',
+    temp: '9C',
+    wind: '6mph',
+    humidity: '4ap'
+    } 
+    ];
 
