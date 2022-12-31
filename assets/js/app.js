@@ -28,6 +28,21 @@ var asideEl = $('.search-form')
 //create weather-today block and append to topSec
 
 
+function getCityData (event){
+    var keyCode = event.keyCode;
+    var searchText = searchInput.val();
+    
+    if (keyCode === 13 && searchText){
+        console.log(searchText)
+    }
+}
+
+
+function init (){
+    searchInput.keydown(getCityData)
+    console.log('working')
+}
+init();
 
 
 
