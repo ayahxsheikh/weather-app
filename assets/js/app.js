@@ -66,6 +66,12 @@ function getCityData (event){
             .then(function(currentData){
              console.log(currentData);
              displayWeather(currentData);
+
+             $.get(forecastURL + `lat=${currentData.coord.lat}&lon=${currentData.coord.lon}`)
+                .then(function (forecastData){
+                    console.log(forecastData)
+                });
+
             
         });
     }
