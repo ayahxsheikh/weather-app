@@ -9,6 +9,7 @@ var apiKey = '753dbaeb28d5f9e47d1357c0fbe984e8';
 var baseURL = 'https://api.openweathermap.org/data/2.5/';
 var currentURL = baseURL + `weather?appid=${apiKey}&units=metric&`;
 var forecastURL = baseURL + `forecast?appid=${apiKey}&units=metric&`;
+var iconURL = 'https://openweathermap.org/img/w/';
 
 var cityInput;
 var mainWrapper = $('.main')
@@ -29,18 +30,18 @@ var asideEl = $('.search-form')
 //create weather-today block and append to topSec
 
 
-function displayWeather(){
+function displayWeather(forecast){
     for (var foreObj of forecast){
         topSec.append( `<section class=" display-today row justify-center">
         <section class="today row">
           <div>
-            <h2 class="city-name row justify-center">${foreObj.city}</h2>
+            <h2 class="city-name row justify-center">${foreObj.name}</h2>
             <h3 class="today-date">28/12/2022</h3>
           <div>
             <div class="today-info column ">
-              <h5 class="icon">Icon</h5>
+              <img class="icon" src="${iconURL + currentData.weather[0].icon}.png">
               <h5 class="temp">Temp: ${foreObj.temp}</h5>
-              <h5 class="wind">Wind: ${foreObj.wind}</h5>
+              <h5 class="wind">Wind: ${foreObj.wind.speed}</h5>
               <h5 class="humidity">Humidity: ${foreObj.humidity}</h5>
             </div>
           </div>
@@ -56,24 +57,24 @@ function displayWeather(){
 
 function getCityData (event){
     var keyCode = event.keyCode;
-    cityInput = searchInput.val();
+    var cityInput = searchInput.val();
     
     if (keyCode === 13 && cityInput){
         // console.log(searchText)
+  
         $.get(currentURL + `q=${cityInput}`)
             .then(function(currentData){
-                console.log(currentData)
-            }
-            )
-
-        displayWeather()
+             console.log(currentData);
+             displayWeather(currentData);
+            
+        });
     }
 }
 
 
 function init (){
-    searchInput.keydown(getCityData)
-    console.log('working')
+    searchInput.keydown(getCityData);
+    console.log('working');
 }
 init();
 
@@ -86,14 +87,14 @@ init();
 //     city: 'london',
 //     temp: '12C',
 //     wind: '2mph',
-//     humidity: '1ap'
+//     humidity: '68%'
 //     },
 
 //     {
-//     city: 'manchester',
-//     temp: '9C',
-//     wind: '6mph',
-//     humidity: '4ap'
+//     city: '',
+//     temp: '',
+//     wind: '',
+//     humidity: ''
 //     } 
 //     ];
 
