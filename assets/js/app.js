@@ -16,6 +16,7 @@ var mainWrapper = $('.main')
 var topSec = $('.top')
 var searchInput = $('#search-input')
 var asideEl = $('.search-form')
+var forecastSec = $('.forecast-sec');
 
 // When key-enter is pressed
     //show current weather
@@ -30,25 +31,39 @@ var asideEl = $('.search-form')
 //create weather-today block and append to topSec
 
 
-function displayWeather(forecast){
-    for (var foreObj of forecast){
+function displayWeather(currentWeather){
         topSec.append( `<section class=" display-today row justify-center">
         <section class="today row">
           <div>
-            <h2 class="city-name row justify-center">${foreObj.name}</h2>
+            <h2 class="city-name row justify-center">${currentWeather.name}</h2>
             <h3 class="today-date">28/12/2022</h3>
           <div>
             <div class="today-info column ">
-              <img class="icon" src="${iconURL + currentData.weather[0].icon}.png">
-              <h5 class="temp">Temp: ${foreObj.temp}</h5>
-              <h5 class="wind">Wind: ${foreObj.wind.speed}</h5>
-              <h5 class="humidity">Humidity: ${foreObj.humidity}</h5>
+              <img class="icon" src="${iconURL + currentWeather.weather[0].icon}.png">
+              <h5 class="temp">Temp: ${currentWeather.main.temp}</h5>
+              <h5 class="wind">Wind: ${currentWeather.wind.speed}</h5>
+              <h5 class="humidity">Humidity: ${currentWeather.main.humidity}</h5>
             </div>
           </div>
         </section>
       </section>`
         );
-    }
+    
+}
+
+function displayForecast(forecast){
+    for (var  i = 0; i < forecast.list.length; i+=8) {
+        
+        forecastSec.append (` <div class="display-weather">
+        <div class="forecast-card">
+        <h4 class="date">28/12/2022</h4>
+        <img class="icon" src="${iconURL + forecast.list[i].weather[0].icon}.png">
+        <h5 class="temp">Temp:${forecast.list[i].main.temp}</h5>
+        <h5 class="wind">Wind:${forecast.list[i].wind.speed}</h5>
+        <h5 class="humidity">Humidity:${forecast.list[i].main.humidity}</h5>
+    </div>
+    </div> `)
+}
 }
 
 // function displayHistory
@@ -70,6 +85,8 @@ function getCityData (event){
              $.get(forecastURL + `lat=${currentData.coord.lat}&lon=${currentData.coord.lon}`)
                 .then(function (forecastData){
                     console.log(forecastData)
+                    displayForecast(forecastData);
+
                 });
 
             
@@ -84,23 +101,4 @@ function init (){
 }
 init();
 
-
-
-
-
-// var forecast = [
-//     {
-//     city: 'london',
-//     temp: '12C',
-//     wind: '2mph',
-//     humidity: '68%'
-//     },
-
-//     {
-//     city: '',
-//     temp: '',
-//     wind: '',
-//     humidity: ''
-//     } 
-//     ];
 
