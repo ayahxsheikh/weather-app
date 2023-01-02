@@ -15,7 +15,7 @@ var cityInput;
 var mainWrapper = $('.main')
 var topSec = $('.top')
 var searchInput = $('#search-input')
-var asideEl = $('.search-form')
+var historyEl = $('.search-history')
 var forecastSec = $('.forecast-sec');
 
 // When key-enter is pressed
@@ -62,22 +62,20 @@ function displayForecast(forecast){
 }
 }
 
-function displayHistory(){
-    cities = JSON.parse(localStorage.getItem('cities'))||[]
-}
-
-displayHistory();
+// function displayHistory(){
+    // cities = JSON.parse(localStorage.setItem('cities'))||[];
+// }
 
 
 
 function getCityData (event){
     var keyCode = event.keyCode;
     var cityInput = searchInput.val();
-    var cities = JSON.parse(localStorage.getItem('cities'))||[]
+    // var cities = JSON.parse(localStorage.getItem('cities'))||[]
 
-    if (cities.indexOf(cityInput === -1)){
+    // if (cities.indexOf(cityInput === -1)){
 
-    }
+    // }
     
     if (keyCode === 13 && cityInput){
         // console.log(searchText)
@@ -93,10 +91,11 @@ function getCityData (event){
                     displayForecast(forecastData);
 
                 });
-
-            
-        });
-    }
+                
+                historyEl.append(`<button>${cityInput}</button>`);
+                // displayHistory();
+        }); 
+    } 
 }
 
 
