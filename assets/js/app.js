@@ -36,9 +36,9 @@ function displayWeather(currentWeather){
           <div>
             <div class="today-info column ">
               <img class="icon" src="${iconURL + currentWeather.weather[0].icon}.png">
-              <h5 class="temp">Temp: ${currentWeather.main.temp} °C</h5>
-              <h5 class="wind">Wind: ${currentWeather.wind.speed} KMP</h5>
-              <h5 class="humidity">Humidity: ${currentWeather.main.humidity}%</h5>
+              <h5 class="temp">Temp: ${Math.round(currentWeather.main.temp)} °C</h5>
+              <h5 class="wind">Wind: ${Math.round(currentWeather.wind.speed)} KMP</h5>
+              <h5 class="humidity">Humidity: ${Math.round(currentWeather.main.humidity)}%</h5>
             </div>
           </div>
         </section>
@@ -48,15 +48,15 @@ function displayWeather(currentWeather){
 } 
 
 function displayForecast(forecast){
-    for (var  i = 0; i < forecast.list.length; i+=8) {
+    for (var  i = 0; i < forecast.list.length; i++) {
         
         forecastSec.append (` <div class="display-weather">
         <div class="forecast-card">
         <h4 class="date">${forecast.list[i].dt_txt}</h4>
         <img src="${iconURL + forecast.list[i].weather[0].icon}.png">
-        <h5 class="temp">Temp: ${forecast.list[i].main.temp} °C</h5>
-        <h5 class="wind">Wind: ${forecast.list[i].wind.speed} KMP</h5>
-        <h5 class="humidity">Humidity: ${forecast.list[i].main.humidity}%</h5>
+        <h5 class="temp">Temp: ${Math.round(forecast.list[i].main.temp)} °C</h5>
+        <h5 class="wind">Wind: ${Math.round(forecast.list[i].wind.speed)} KMP</h5>
+        <h5 class="humidity">Humidity: ${Math.round(forecast.list[i].main.humidity)}%</h5>
     </div>
     </div> `)
 }
