@@ -112,8 +112,10 @@ main .today-info > * {
     margin-top: 10px;
 }
 
-.icon {
-    text-align: center;
+img.icon {
+   height: 3rem;
+   width: 3rem;
+   margin-top:0px;
 }
 
 button {
@@ -129,13 +131,10 @@ button {
 
 }
 .forecast-sec {
-    background-color: var(--pewter);
-    min-height: 15rem;
-}
-
-.display-weather {
     display:grid;
     grid-template-columns: repeat(4, 1fr);
+    background-color: var(--pewter);
+    min-height: 15rem;
 }
 
 section .forecast-card > *:not(:last-child){
@@ -168,7 +167,7 @@ footer {
 
 
 
-@media (max-width: 800px) {
+@media (max-width: 857px) {
 
     .top {
         grid-template-columns: 1fr;
@@ -179,7 +178,7 @@ footer {
         align-items:center;
     }
 
-    .display-weather {
+    .forecast-sec {
         grid-template-columns: 1fr 1fr 1fr;
     }
 

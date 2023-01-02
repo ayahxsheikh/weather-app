@@ -17,6 +17,8 @@ var topSec = $('.top')
 var searchInput = $('#search-input')
 var asideEl = $('.search-form')
 var forecastSec = $('.forecast-sec');
+var futureDate;
+
 
 // When key-enter is pressed
     //show current weather
@@ -27,52 +29,58 @@ var forecastSec = $('.forecast-sec');
         //if history is not empty, output each city to the webpage
 
 
-//create history-block with button-Els and append to asideEl
-//create weather-today block and append to topSec
-
 
 function displayWeather(currentWeather){
         topSec.append( `<section class=" display-today row justify-center">
         <section class="today row">
           <div>
             <h2 class="city-name row justify-center">${currentWeather.name}</h2>
-            <h3 class="today-date">28/12/2022</h3>
+            <h3 class="today-date">${moment().format('DD/MM/YY')}</h3>
           <div>
             <div class="today-info column ">
               <img class="icon" src="${iconURL + currentWeather.weather[0].icon}.png">
-              <h5 class="temp">Temp: ${currentWeather.main.temp}</h5>
-              <h5 class="wind">Wind: ${currentWeather.wind.speed}</h5>
-              <h5 class="humidity">Humidity: ${currentWeather.main.humidity}</h5>
+              <h5 class="temp">Temp: ${currentWeather.main.temp} °C</h5>
+              <h5 class="wind">Wind: ${currentWeather.wind.speed} KMP</h5>
+              <h5 class="humidity">Humidity: ${currentWeather.main.humidity}%</h5>
             </div>
           </div>
         </section>
       </section>`
         );
     
-}
+} 
 
 function displayForecast(forecast){
     for (var  i = 0; i < forecast.list.length; i+=8) {
         
         forecastSec.append (` <div class="display-weather">
         <div class="forecast-card">
-        <h4 class="date">28/12/2022</h4>
-        <img class="icon" src="${iconURL + forecast.list[i].weather[0].icon}.png">
-        <h5 class="temp">Temp:${forecast.list[i].main.temp}</h5>
-        <h5 class="wind">Wind:${forecast.list[i].wind.speed}</h5>
-        <h5 class="humidity">Humidity:${forecast.list[i].main.humidity}</h5>
+        <h4 class="date">${futureDates}</h4>
+        <img src="${iconURL + forecast.list[i].weather[0].icon}.png">
+        <h5 class="temp">Temp: ${forecast.list[i].main.temp} °C</h5>
+        <h5 class="wind">Wind: ${forecast.list[i].wind.speed} KMP</h5>
+        <h5 class="humidity">Humidity: ${forecast.list[i].main.humidity}%</h5>
     </div>
     </div> `)
 }
 }
 
-// function displayHistory
+function displayHistory(){
+    cities = JSON.parse(localStorage.getItem('cities'))||[]
+}
+
+displayHistory();
 
 
 
 function getCityData (event){
     var keyCode = event.keyCode;
     var cityInput = searchInput.val();
+    var cities = JSON.parse(localStorage.getItem('cities'))||[]
+
+    if (cities.indexOf(cityInput === -1)){
+
+    }
     
     if (keyCode === 13 && cityInput){
         // console.log(searchText)
