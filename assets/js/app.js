@@ -17,8 +17,6 @@ var topSec = $('.top')
 var searchInput = $('#search-input')
 var asideEl = $('.search-form')
 var forecastSec = $('.forecast-sec');
-var futureDate;
-
 
 // When key-enter is pressed
     //show current weather
@@ -27,7 +25,6 @@ var futureDate;
         //add city name to history
         //pull from local storage
         //if history is not empty, output each city to the webpage
-
 
 
 function displayWeather(currentWeather){
@@ -55,7 +52,7 @@ function displayForecast(forecast){
         
         forecastSec.append (` <div class="display-weather">
         <div class="forecast-card">
-        <h4 class="date">${futureDates}</h4>
+        <h4 class="date">${forecast.list[i].dt_txt}</h4>
         <img src="${iconURL + forecast.list[i].weather[0].icon}.png">
         <h5 class="temp">Temp: ${forecast.list[i].main.temp} °C</h5>
         <h5 class="wind">Wind: ${forecast.list[i].wind.speed} KMP</h5>
