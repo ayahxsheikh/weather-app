@@ -17,6 +17,8 @@ var topSec = $('.top')
 var searchInput = $('#search-input')
 var historyEl = $('.search-history')
 var forecastSec = $('.forecast-sec');
+var todaySec = $('.display-today');
+
 
 // When key-enter is pressed
     //show current weather
@@ -28,7 +30,10 @@ var forecastSec = $('.forecast-sec');
 
 
 function displayWeather(currentWeather){
-        topSec.append( `<section class=" display-today row justify-center">
+    // clears forecast section on nect serach input
+    todaySec.html(' ');
+    
+        todaySec.append( `
         <section class="today row">
           <div>
             <h2 class="city-name row justify-center">${currentWeather.name}</h2>
@@ -41,14 +46,15 @@ function displayWeather(currentWeather){
               <h5 class="humidity">Humidity: ${Math.round(currentWeather.main.humidity)}%</h5>
             </div>
           </div>
-        </section>
-      </section>`
+        </section>`
         );
-    
+        
 } 
 
 function displayForecast(forecast){
-    for (var  i = 0; i < forecast.list.length; i++) {
+    // clears forecast section on nect serach input
+    forecastSec.html(' ');
+    for (var  i = 0; i < forecast.list.length; i+=8) {
         
         forecastSec.append (` <div class="display-weather">
         <div class="forecast-card">
@@ -62,23 +68,24 @@ function displayForecast(forecast){
 }
 }
 
-// function displayHistory(){
-    // cities = JSON.parse(localStorage.setItem('cities'))||[];
-// }
+function displayHistory(){
+    cities = JSON.parse(localStorage.setItem('city', cities))||[];
+}
 
 
 
 function getCityData (event){
     var keyCode = event.keyCode;
     var cityInput = searchInput.val();
-    // var cities = JSON.parse(localStorage.getItem('cities'))||[]
+    // var cities = JSON.parse(localStorage.getItem('cities'))||[];
 
     // if (cities.indexOf(cityInput === -1)){
-
+    //     console.log(cities);
     // }
     
     if (keyCode === 13 && cityInput){
         // console.log(searchText)
+        
   
         $.get(currentURL + `q=${cityInput}`)
             .then(function(currentData){
@@ -92,7 +99,7 @@ function getCityData (event){
 
                 });
                 
-                historyEl.append(`<button>${cityInput}</button>`);
+                return historyEl.append(`<button class="btn">${cityInput}</button>`);
                 // displayHistory();
         }); 
     } 
