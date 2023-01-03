@@ -18,7 +18,8 @@ var searchInput = $('#search-input')
 var historyEl = $('.search-history')
 var forecastSec = $('.forecast-sec');
 var todaySec = $('.display-today');
-
+var citiesArr = [];
+var cities = [];
 
 // When key-enter is pressed
     //show current weather
@@ -32,7 +33,7 @@ var todaySec = $('.display-today');
 function displayWeather(currentWeather){
     // clears forecast section on nect serach input
     todaySec.html(' ');
-    
+
         todaySec.append( `
         <section class="today row">
           <div>
@@ -68,24 +69,24 @@ function displayForecast(forecast){
 }
 }
 
-function displayHistory(){
-    cities = JSON.parse(localStorage.setItem('city', cities))||[];
+function getCityData(){
+
+    JSON.parse(localStorage.getItem('city'))||[];
 }
-
-
 
 function getCityData (event){
     var keyCode = event.keyCode;
     var cityInput = searchInput.val();
-    // var cities = JSON.parse(localStorage.getItem('cities'))||[];
 
-    // if (cities.indexOf(cityInput === -1)){
-    //     console.log(cities);
-    // }
+    var setCity = localStorage.setItem('city', JSON.stringify(citiesArr));
+    // console.log(citiesArr);
     
     if (keyCode === 13 && cityInput){
         // console.log(searchText)
-        
+        if (cityInput !== citiesArr.indexOf(-1)){
+            citiesArr.push(cityInput)
+            console.log(citiesArr);
+        }
   
         $.get(currentURL + `q=${cityInput}`)
             .then(function(currentData){
@@ -99,8 +100,10 @@ function getCityData (event){
 
                 });
                 
-                return historyEl.append(`<button class="btn">${cityInput}</button>`);
-                // displayHistory();
+                var button = historyEl.append(`<button class="btn">${cityInput}</button>`);
+                var cityBtn = $('.btn');
+                cityBtn.on('click', getCityData);
+                return button, cityBtn;
         }); 
     } 
 }
