@@ -11,15 +11,16 @@ var currentURL = baseURL + `weather?appid=${apiKey}&units=metric&`;
 var forecastURL = baseURL + `forecast?appid=${apiKey}&units=metric&`;
 var iconURL = 'https://openweathermap.org/img/w/';
 
-var cityInput;
 var mainWrapper = $('.main')
 var topSec = $('.top')
 var searchInput = $('#search-input')
+var cityInput;
 var historyEl = $('.search-history')
 var forecastSec = $('.forecast-sec');
 var todaySec = $('.display-today');
 var citiesArr = [];
 var cities = [];
+var cityBtn;
 
 // When key-enter is pressed
     //show current weather
@@ -69,41 +70,47 @@ function displayForecast(forecast){
 }
 }
 
-function getCityData(){
-
-    JSON.parse(localStorage.getItem('city'))||[];
+function previousCity(){
+   var previousCity = JSON.parse(localStorage.getItem('city'))||[];
+    
+    console.log(previousCity );
+    console.log('hello');
 }
 
 function getCityData (event){
     var keyCode = event.keyCode;
     var cityInput = searchInput.val();
 
-    var setCity = localStorage.setItem('city', JSON.stringify(citiesArr));
+    
     // console.log(citiesArr);
     
     if (keyCode === 13 && cityInput){
         // console.log(searchText)
-        if (cityInput !== citiesArr.indexOf(-1)){
-            citiesArr.push(cityInput)
-            console.log(citiesArr);
-        }
-  
+        
         $.get(currentURL + `q=${cityInput}`)
-            .then(function(currentData){
-             console.log(currentData);
-             displayWeather(currentData);
-
-             $.get(forecastURL + `lat=${currentData.coord.lat}&lon=${currentData.coord.lon}`)
-                .then(function (forecastData){
-                    console.log(forecastData)
-                    displayForecast(forecastData);
-
-                });
+        .then(function(currentData){
+            // console.log(currentData);
+            displayWeather(currentData);
+            
+            $.get(forecastURL + `lat=${currentData.coord.lat}&lon=${currentData.coord.lon}`)
+            .then(function (forecastData){
+                // console.log(forecastData)
+                displayForecast(forecastData);
                 
-                var button = historyEl.append(`<button class="btn">${cityInput}</button>`);
-                var cityBtn = $('.btn');
-                cityBtn.on('click', getCityData);
-                return button, cityBtn;
+            });
+            // ADDING LOCAL STORAGE
+            //if statement inside the promise chain ensures only cities from API are store into localStorage rather than any input
+                if (cityInput !== ''){
+                    citiesArr.push(cityInput)
+                    var setCity = localStorage.setItem('city', JSON.stringify(citiesArr));
+                    console.log(citiesArr);
+
+                    historyEl.append(`<button id="cityBtn" class="btn">${cityInput}</button>`)
+                    $('#cityBtn').click(previousCity);
+                }
+            
+                // return button, cityBtn;
+
         }); 
     } 
 }
