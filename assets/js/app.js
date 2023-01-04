@@ -70,6 +70,12 @@ function displayForecast(forecast){
 }
 }
 
+function displayHistory(cityInput){
+   historyEl.append(`<button id="cityBtn" class="btn">${cityInput}</button>`)
+   var button = $('#cityBtn')
+    button.click(previousCity);
+}
+
 function previousCity(){
    var previousCity = JSON.parse(localStorage.getItem('city'))||[];
     
@@ -80,9 +86,6 @@ function previousCity(){
 function getCityData (event){
     var keyCode = event.keyCode;
     var cityInput = searchInput.val();
-
-    
-    // console.log(citiesArr);
     
     if (keyCode === 13 && cityInput){
         // console.log(searchText)
@@ -102,14 +105,11 @@ function getCityData (event){
             //if statement inside the promise chain ensures only cities from API are store into localStorage rather than any input
                 if (cityInput !== ''){
                     citiesArr.push(cityInput)
-                    var setCity = localStorage.setItem('city', JSON.stringify(citiesArr));
                     console.log(citiesArr);
+                    localStorage.setItem('city', JSON.stringify(citiesArr));
 
-                    historyEl.append(`<button id="cityBtn" class="btn">${cityInput}</button>`)
-                    $('#cityBtn').click(previousCity);
+                    displayHistory(cityInput);
                 }
-            
-                // return button, cityBtn;
 
         }); 
     } 
