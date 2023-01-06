@@ -71,6 +71,7 @@ function displayForecast(forecast){
 }
 
 function storeCity(cityInput){
+
     //STORES TO LOCALSTORAGE
     if (cityInput !== '' && citiesArr.indexOf(-1)){
         citiesArr = [];
@@ -78,11 +79,13 @@ function storeCity(cityInput){
         console.log(citiesArr);
         localStorage.setItem('city', JSON.stringify(citiesArr));
 
-        for (var i = 0; i < citiesArr.length; i++) {
+    // APPENDS BUTTONS
+        for (var i = 1; i < citiesArr.length; i++) {
             var newCity = citiesArr[i];
+            console.log(newCity)
 
-            console.log(citiesArr[i])
             historyEl.append(`<button id="cityBtn `+{newCity}`" class="btn">${cityInput}</button>`);
+
             var button = $('button');
             button.click(getPreviousCity);
         }
@@ -112,9 +115,7 @@ function getCityData (event){
                 displayForecast(forecastData);
                 
             });
-            // ADDING LOCAL STORAGE
-            //if statement inside the promise chain ensures only cities from API are store into localStorage rather than any input
-
+            
             storeCity(cityInput);
 
         }); 
