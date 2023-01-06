@@ -70,17 +70,28 @@ function displayForecast(forecast){
 }
 }
 
-function displayHistory(cityInput){
-   historyEl.append(`<button id="cityBtn" class="btn">${cityInput}</button>`)
-   var button = $('#cityBtn')
-    button.click(previousCity);
+function storeCity(cityInput){
+    //STORES TO LOCALSTORAGE
+    if (cityInput !== '' && citiesArr.indexOf(-1)){
+        citiesArr = [];
+        citiesArr.push(cityInput)
+        console.log(citiesArr);
+        localStorage.setItem('city', JSON.stringify(citiesArr));
+
+        for (var i = 0; i < citiesArr.length; i++) {
+            var newCity = citiesArr[i];
+
+            console.log(citiesArr[i])
+            historyEl.append(`<button id="cityBtn `+{newCity}`" class="btn">${cityInput}</button>`);
+            var button = $('button');
+            button.click(getPreviousCity);
+        }
+    }
+        
 }
 
-function previousCity(){
-   var previousCity = JSON.parse(localStorage.getItem('city'))||[];
-    
-    console.log(previousCity );
-    console.log('hello');
+function getPreviousCity(){
+   JSON.parse(localStorage.getItem('city'))||[];
 }
 
 function getCityData (event){
@@ -103,13 +114,8 @@ function getCityData (event){
             });
             // ADDING LOCAL STORAGE
             //if statement inside the promise chain ensures only cities from API are store into localStorage rather than any input
-                if (cityInput !== ''){
-                    citiesArr.push(cityInput)
-                    console.log(citiesArr);
-                    localStorage.setItem('city', JSON.stringify(citiesArr));
 
-                    displayHistory(cityInput);
-                }
+            storeCity(cityInput);
 
         }); 
     } 
@@ -118,6 +124,7 @@ function getCityData (event){
 
 function init (){
     searchInput.keydown(getCityData);
+    storeCity();
     console.log('working');
 }
 init();
