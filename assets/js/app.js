@@ -22,17 +22,8 @@ var citiesArr = [];
 var cities = [];
 var cityBtn;
 
-// When key-enter is pressed
-    //show current weather
-    //show 5 day forecast
-    //show search history
-        //add city name to history
-        //pull from local storage
-        //if history is not empty, output each city to the webpage
-
-
 function displayWeather(currentWeather){
-    // clears forecast section on nect serach input
+    // clears forecast section on next serach input
     todaySec.html(' ');
 
         todaySec.append( `
@@ -54,7 +45,7 @@ function displayWeather(currentWeather){
 } 
 
 function displayForecast(forecast){
-    // clears forecast section on nect serach input
+    // clears forecast section on next serach input
     forecastSec.html(' ');
     for (var  i = 0; i < forecast.list.length; i+=8) {
         
@@ -71,30 +62,43 @@ function displayForecast(forecast){
 }
 
 function storeCity(cityInput){
-
     //STORES TO LOCALSTORAGE
-    if (cityInput !== '' && citiesArr.indexOf(-1)){
-        citiesArr = [];
+    citiesArr = JSON.parse(localStorage.getItem('city')) || []
+
+    if (!citiesArr.includes(cityInput)){
         citiesArr.push(cityInput)
-        console.log(citiesArr);
         localStorage.setItem('city', JSON.stringify(citiesArr));
+        console.log(citiesArr)
 
-    // APPENDS BUTTONS
-        for (var i = 1; i < citiesArr.length; i++) {
-            var newCity = citiesArr[i];
-            console.log(newCity)
-
-            historyEl.append(`<button id="cityBtn `+{newCity}`" class="btn">${cityInput}</button>`);
-
-            var button = $('button');
-            button.click(getPreviousCity);
-        }
-    }
-        
+        // APPENDS BUTTONS
+        var button = $(`<button id=${cityInput} class="btn">${cityInput}</button>`);
+        historyEl.append(button);
+    }       
 }
 
-function getPreviousCity(){
-   JSON.parse(localStorage.getItem('city'))||[];
+// LISTENER FOR BUTTONS
+historyEl.on('click', 'button', function(){
+    // 'button' targets individual button in historyEl
+    var cityCLick = $(this).text()
+    console.log(cityCLick)
+    getPreviousCities(cityCLick)
+})
+
+// GETS PREVIOUS DATA FROM BUTTONS
+function getPreviousCities(cityInput){
+    $.get(currentURL + `q=${cityInput}`)
+        .then(function(currentData){
+            // console.log(currentData);
+            displayWeather(currentData);
+            
+            $.get(forecastURL + `lat=${currentData.coord.lat}&lon=${currentData.coord.lon}`)
+            .then(function (forecastData){
+                // console.log(forecastData)
+                displayForecast(forecastData);
+                
+            });
+
+        }); 
 }
 
 function getCityData (event){
@@ -115,7 +119,7 @@ function getCityData (event){
                 displayForecast(forecastData);
                 
             });
-            
+
             storeCity(cityInput);
 
         }); 
