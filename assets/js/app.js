@@ -22,6 +22,8 @@ var citiesArr = [];
 var cities = [];
 var cityBtn;
 
+cities = JSON.parse(localStorage.getItem('city')) || []
+
 function displayWeather(currentWeather){
     // clears forecast section on next serach input
     todaySec.html(' ');
@@ -60,15 +62,20 @@ function displayForecast(forecast){
     </div> `)
 }
 }
+var citiesInput;
 
 function storeCity(cityInput){
     //STORES TO LOCALSTORAGE
-    citiesArr = JSON.parse(localStorage.getItem('city')) || []
+    citiesInput = searchInput.val().trim();
 
-    if (!citiesArr.includes(cityInput)){
-        citiesArr.push(cityInput)
-        localStorage.setItem('city', JSON.stringify(citiesArr));
-        console.log(citiesArr)
+    if (!cityInput && cities == []){
+        historyEl.html('');
+        
+        // will not create new btn if city already exists in localstorage
+    } else if (cities.indexOf(citiesInput) == -1){
+        cities.push(cityInput)
+        console.log(cities)
+        localStorage.setItem('city', JSON.stringify(cities));
 
         // APPENDS BUTTONS
         var button = $(`<button id=${cityInput} class="btn">${cityInput}</button>`);
