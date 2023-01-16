@@ -19,10 +19,10 @@ var historyEl = $('.search-history')
 var forecastSec = $('.forecast-sec');
 var todaySec = $('.display-today');
 var citiesArr = [];
-var cities = [];
 var cityBtn;
 
-cities = JSON.parse(localStorage.getItem('city')) || []
+var cities = JSON.parse(localStorage.getItem('city')) || [];
+// historyEl.html("");
 
 function displayWeather(currentWeather){
     // clears forecast section on next serach input
@@ -68,19 +68,19 @@ function storeCity(cityInput){
     //STORES TO LOCALSTORAGE
     citiesInput = searchInput.val().trim();
 
-    if (!cityInput && cities == []){
-        historyEl.html('');
+    if (cities.indexOf(citiesInput) == -1){
         
-        // will not create new btn if city already exists in localstorage
-    } else if (cities.indexOf(citiesInput) == -1){
-        cities.push(cityInput)
-        console.log(cities)
+        //will not create new btn if city already exists in localstorage
+        cities.push(citiesInput)
         localStorage.setItem('city', JSON.stringify(cities));
+        console.log(cities)
+    }       
+        // clears input area after search is entered
+        searchInput.val("");
 
         // APPENDS BUTTONS
         var button = $(`<button id=${cityInput} class="btn">${cityInput}</button>`);
         historyEl.append(button);
-    }       
 }
 
 // LISTENER FOR BUTTONS
