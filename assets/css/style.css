@@ -56,7 +56,9 @@ body {
     min-height: 30rem;
 }
 
-h4.message {
+p.message {
+    font-size: 16px;
+    font-weight: bolder;
     padding-top: 1rem;
     margin-bottom: .7rem;
 }
@@ -160,14 +162,7 @@ footer {
 
 
 
-
-
-
-
-
-
-
-@media (max-width: 857px) {
+@media screen and (max-width: 857px) {
 
     .top {
         grid-template-columns: 1fr;
@@ -181,7 +176,24 @@ footer {
     .forecast-sec {
         grid-template-columns: 1fr 1fr 1fr;
     }
+}
 
+@media screen and (max-width: 758px) {
+   
+    .forecast-sec {
+        grid-template-columns: 1fr 1fr;
+    }
+}
 
+@media screen and (max-width: 500px) {
+    button.btn {
+        width: 90px;
+    }
+    .today {
+        width: 25rem;
+    }
 
+    .p.message {
+        font-size: 8px;
+    }
 }
