@@ -18,11 +18,24 @@ var cityInput;
 var historyEl = $('.search-history')
 var forecastSec = $('.forecast-sec');
 var todaySec = $('.display-today');
-var citiesArr = [];
 var cityBtn;
+var cities = JSON.parse(localStorage.getItem('cities')) || [];
 
-var cities = JSON.parse(localStorage.getItem('city')) || [];
-// historyEl.html("");
+function checkStorage (){
+// checks if items are in local storage and creates buttons for them, func called in init.
+    if(localStorage.getItem('cities')){
+        cities = JSON.parse(localStorage.getItem('cities')) || [];
+        
+        for (let i = 0; i < cities.length; i++ ){
+            
+            var button = $("<button>");
+            button.attr("class", "btn");
+            button.attr("id", `${cities[i]}`);
+            button.text(cities[i]);
+            historyEl.append(button);
+        };
+    };
+};
 
 function displayWeather(currentWeather){
     // clears forecast section on next serach input
@@ -62,26 +75,28 @@ function displayForecast(forecast){
     </div> `)
 }
 }
-var citiesInput;
 
-function storeCity(cityInput){
-    //STORES TO LOCALSTORAGE
-    citiesInput = searchInput.val().trim();
-
-    if (cities.indexOf(citiesInput) == -1){
-        
-        //will not create new btn if city already exists in localstorage
-        cities.push(citiesInput)
-        localStorage.setItem('city', JSON.stringify(cities));
+//Creates Buttons / Setting LocalStorage
+function createButtons(cityInput){
+  
+// does not create a button for cities that are already stored in local storage
+    if (cityInput) {
+        cities.push(cityInput)
         console.log(cities)
-    }       
-        // clears input area after search is entered
-        searchInput.val("");
-
-        // APPENDS BUTTONS
-        var button = $(`<button id=${cityInput} class="btn">${cityInput}</button>`);
+    
+    // for loop is not needed beucase this will only create one button for one city that is inputted at a time
+        var button = $("<button>");
+        button.attr("class", "btn");
+        button.attr("id", `${cityInput}`);
+        button.text(cityInput);
         historyEl.append(button);
-}
+  
+        localStorage.setItem('cities', JSON.stringify(cities));
+    }; 
+    //clears input field after search is entered
+    searchInput.val("");
+   
+};
 
 // LISTENER FOR BUTTONS
 historyEl.on('click', 'button', function(){
@@ -127,18 +142,18 @@ function getCityData (event){
                 
             });
 
-            storeCity(cityInput);
-
+            
         }); 
+        createButtons(cityInput);
     } 
 }
 
 
 function init (){
     searchInput.keydown(getCityData);
-    storeCity();
-    console.log('working');
-}
+    checkStorage();
+};
+
 init();
 
 
